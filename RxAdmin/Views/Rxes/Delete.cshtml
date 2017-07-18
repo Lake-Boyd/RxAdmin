@@ -1,0 +1,59 @@
+@model RxAdmin.Models.Rx
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rx</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="ID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.rxName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rxName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.rxDose)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rxDose)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fillDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fillDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.refillDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.refillDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

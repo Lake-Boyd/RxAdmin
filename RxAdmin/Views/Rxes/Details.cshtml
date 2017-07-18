@@ -1,0 +1,54 @@
+@model RxAdmin.Models.Rx
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rx</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rxName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rxName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.rxDose)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rxDose)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fillDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fillDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.refillDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.refillDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
