@@ -56,14 +56,30 @@ namespace RxAdmin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Specialty,PhoneNumber")] Doctor doctor)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Specialty,PhoneNumber")] Doctor doctor)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                _context.Add(doctor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+            
+                if (ModelState.IsValid)
+                {
+                    _context.Add(doctor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+
             }
+
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.
+                ModelState.AddModelError("", "Unable to save changes. " +
+                    "Try again, and if the problem persists " +
+                    "see your system administrator.");
+            }
+
             return View(doctor);
         }
 
