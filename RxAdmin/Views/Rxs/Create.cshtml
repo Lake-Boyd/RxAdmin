@@ -11,7 +11,12 @@
         <h4>Rx</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+        <div class="form-group">
+            <label asp-for="PatientID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PatientID" class ="form-control" asp-items="ViewBag.PatientID"></select>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
@@ -20,7 +25,6 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <label asp-for="FillDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -28,16 +32,6 @@
                 <span asp-validation-for="FillDate" class="text-danger"></span>
             </div>
         </div>
-
-
-        <div class="form-group">
-            <label asp-for="PatientID" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PatientID" class="form-control" />
-                <span asp-validation-for="PatientID" class="text-danger"></span>
-            </div>
-        </div>
-
         <div class="form-group">
             <label asp-for="RefillDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -45,7 +39,6 @@
                 <span asp-validation-for="RefillDate" class="text-danger"></span>
             </div>
         </div>
-
         <div class="form-group">
             <label asp-for="RxDose" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -53,8 +46,6 @@
                 <span asp-validation-for="RxDose" class="text-danger"></span>
             </div>
         </div>
-
-
         <div class="form-group">
             <label asp-for="RxName" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -62,9 +53,6 @@
                 <span asp-validation-for="RxName" class="text-danger"></span>
             </div>
         </div>
-
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">

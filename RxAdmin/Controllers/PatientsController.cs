@@ -10,22 +10,23 @@ using RxAdmin.Models;
 
 namespace RxAdmin.Controllers
 {
-    public class RxesController : Controller
+    public class PatientsController : Controller
     {
         private readonly HospitalContext _context;
 
-        public RxesController(HospitalContext context)
+        public PatientsController(HospitalContext context)
         {
             _context = context;    
         }
 
-        // GET: Rxes
+        // GET: Patients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Rxs.ToListAsync());
+            var hospitalContext = _context.Patients.Include(p => p.Doctor);
+            return View(await hospitalContext.ToListAsync());
         }
 
-        // GET: Rxes/Details/5
+        // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,52 +34,42 @@ namespace RxAdmin.Controllers
                 return NotFound();
             }
 
-            var rx = await _context.Rxs
+            var patient = await _context.Patients
+                .Include(p => p.Doctor)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (rx == null)
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(rx);
+            return View(patient);
         }
 
-        // GET: Rxes/Create
+        // GET: Patients/Create
         public IActionResult Create()
         {
+            ViewData["DoctorID"] = new SelectList(_context.Doctors, "ID", "ID");
             return View();
         }
 
-        // POST: Rxes/Create
+        // POST: Patients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PatientID,Email,FillDate,RefillDate,RxDose,RxName,Text")] Rx rx)
+        public async Task<IActionResult> Create([Bind("ID,DoctorID,Condition,FirstName,LastName,Age,Gender,Street,City,State,Zip")] Patient patient)
         {
-            try
+            if (ModelState.IsValid)
             {
-
-                if (ModelState.IsValid)
-                    {
-                        _context.Add(rx);
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction("Index");
-                    }
+                _context.Add(patient);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-
-            catch (DbUpdateException /* ex */)
-            {
-                //Log the error (uncomment ex variable name and write a log.
-                ModelState.AddModelError("", "Unable to save changes. " +
-                    "Try again, and if the problem persists " +
-                    "see your system administrator.");
-            }
-
-            return View(rx);
+            ViewData["DoctorID"] = new SelectList(_context.Doctors, "ID", "ID", patient.DoctorID);
+            return View(patient);
         }
 
-        // GET: Rxes/Edit/5
+        // GET: Patients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,22 +77,23 @@ namespace RxAdmin.Controllers
                 return NotFound();
             }
 
-            var rx = await _context.Rxs.SingleOrDefaultAsync(m => m.ID == id);
-            if (rx == null)
+            var patient = await _context.Patients.SingleOrDefaultAsync(m => m.ID == id);
+            if (patient == null)
             {
                 return NotFound();
             }
-            return View(rx);
+            ViewData["DoctorID"] = new SelectList(_context.Doctors, "ID", "ID", patient.DoctorID);
+            return View(patient);
         }
 
-        // POST: Rxes/Edit/5
+        // POST: Patients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,PatientID,Email,FillDate,RefillDate,RxDose,RxName,Text")] Rx rx)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,DoctorID,Condition,FirstName,LastName,Age,Gender,Street,City,State,Zip")] Patient patient)
         {
-            if (id != rx.ID)
+            if (id != patient.ID)
             {
                 return NotFound();
             }
@@ -110,12 +102,12 @@ namespace RxAdmin.Controllers
             {
                 try
                 {
-                    _context.Update(rx);
+                    _context.Update(patient);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RxExists(rx.ID))
+                    if (!PatientExists(patient.ID))
                     {
                         return NotFound();
                     }
@@ -126,10 +118,11 @@ namespace RxAdmin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(rx);
+            ViewData["DoctorID"] = new SelectList(_context.Doctors, "ID", "ID", patient.DoctorID);
+            return View(patient);
         }
 
-        // GET: Rxes/Delete/5
+        // GET: Patients/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,30 +130,31 @@ namespace RxAdmin.Controllers
                 return NotFound();
             }
 
-            var rx = await _context.Rxs
+            var patient = await _context.Patients
+                .Include(p => p.Doctor)
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (rx == null)
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(rx);
+            return View(patient);
         }
 
-        // POST: Rxes/Delete/5
+        // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rx = await _context.Rxs.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Rxs.Remove(rx);
+            var patient = await _context.Patients.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Patients.Remove(patient);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool RxExists(int id)
+        private bool PatientExists(int id)
         {
-            return _context.Rxs.Any(e => e.ID == id);
+            return _context.Patients.Any(e => e.ID == id);
         }
     }
 }

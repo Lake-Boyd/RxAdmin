@@ -12,63 +12,48 @@
     <hr />
     <dl class="dl-horizontal">
         <input type="hidden" asp-for="ID" />
-
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.FillDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.FillDate)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PatientID)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PatientID)
-        </dd>
-
-
         <dt>
             @Html.DisplayNameFor(model => model.RefillDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RefillDate)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.RxDose)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RxDose)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.RxName)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RxName)
         </dd>
-
-
         <dt>
             @Html.DisplayNameFor(model => model.Text)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Text)
         </dd>
-
-
-
-
-
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Patient.ID)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
