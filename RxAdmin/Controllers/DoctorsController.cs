@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RxAdmin.Data;
 using RxAdmin.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RxAdmin.Controllers
 {
+    [Authorize]
     public class DoctorsController : Controller
     {
         private readonly HospitalContext _context;
