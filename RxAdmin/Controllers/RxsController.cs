@@ -22,11 +22,45 @@ namespace RxAdmin.Controllers
         }
 
         // GET: Rxs
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var hospitalContext = _context.Rxs.Include(r => r.Patient);
-            return View(await hospitalContext.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
+            var rxs = from s in _context.Rxs
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rxs = rxs.Where(s => s.RxName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    rxs = rxs.OrderByDescending(s => s.RxName);
+                    break;
+                case "Date":
+                    rxs = rxs.OrderBy(s => s.RefillDate);
+                    break;
+                case "date_desc":
+                    rxs = rxs.OrderByDescending(s => s.RefillDate);
+                    break;
+                default:
+                    rxs = rxs.OrderBy(s => s.RxName);
+                    break;
+            }
+            return View(await rxs.AsNoTracking().ToListAsync());
         }
+
+
+        // public async Task<IActionResult> Index()
+       // {
+       //     var hospitalContext = _context.Rxs.Include(r => r.Patient);
+       //     return View(await hospitalContext.ToListAsync());
+      //  }
 
         // GET: Rxs/Details/5
         public async Task<IActionResult> Details(int? id)

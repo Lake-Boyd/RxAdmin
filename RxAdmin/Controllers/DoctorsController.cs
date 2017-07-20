@@ -22,10 +22,43 @@ namespace RxAdmin.Controllers
         }
 
         // GET: Doctors
-        public async Task<IActionResult> Index()
+
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Doctors.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var doctors = from s in _context.Doctors
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                doctors = doctors.Where(s => s.LastName.Contains(searchString)
+                || s.FirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    doctors = doctors.OrderByDescending(s => s.LastName);
+                    break;
+
+                default:
+                    doctors = doctors.OrderBy(s => s.LastName);
+                    break;
+            }
+            return View(await doctors.AsNoTracking().ToListAsync());
         }
+
+
+
+
+
+        //   public async Task<IActionResult> Index()
+        //   {
+        //       return View(await _context.Doctors.ToListAsync());
+        //  }
 
         // GET: Doctors/Details/5
         public async Task<IActionResult> Details(int? id)

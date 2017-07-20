@@ -21,12 +21,50 @@ namespace RxAdmin.Controllers
             _context = context;    
         }
 
-        // GET: Patients
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var hospitalContext = _context.Patients.Include(p => p.Doctor);
-            return View(await hospitalContext.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CondSortParm"] = String.IsNullOrEmpty(sortOrder) ? "cond_desc" : "";
+            //   ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
+            var patients = from s in _context.Patients
+                      select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                patients = patients.Where(s => s.LastName.Contains(searchString)
+                || s.FirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    patients = patients.OrderByDescending(s => s.LastName);
+                    break;
+                case "cond_desc":
+                    patients = patients.OrderByDescending(s => s.Condition);
+                    break;
+                default:
+                    patients = patients.OrderBy(s => s.LastName);
+                    break;
+            }
+            return View(await patients.AsNoTracking().ToListAsync());
         }
+
+
+
+        // GET: Patients
+        // public async Task<IActionResult> Index()
+        // {
+        //     var hospitalContext = _context.Patients.Include(p => p.Doctor);
+        //     return View(await hospitalContext.ToListAsync());
+        // }
+
+
+
+
 
         // GET: Patients/Details/5
         public async Task<IActionResult> Details(int? id)

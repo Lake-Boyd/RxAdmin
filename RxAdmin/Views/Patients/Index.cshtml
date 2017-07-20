@@ -9,17 +9,30 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Condition)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["CondSortParm"]">@Html.DisplayNameFor(model => model.Condition)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.LastName)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Age)
@@ -76,7 +89,7 @@
                 @Html.DisplayFor(modelItem => item.Zip)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Doctor.ID)
+                @Html.DisplayFor(modelItem => item.DoctorID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
