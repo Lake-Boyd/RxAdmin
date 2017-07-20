@@ -4,62 +4,61 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Prescription Information</h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Rx</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ID" />
         <div class="form-group">
-            <label asp-for="PatientID" class="control-label col-md-2"></label>
+            <label asp-for="PatientID" class="control-label col-md-2">Patient ID</label>
             <div class="col-md-10">
                 <select asp-for="PatientID" class="form-control" asp-items="ViewBag.PatientID"></select>
                 <span asp-validation-for="PatientID" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="Email" />
-                    <label asp-for="Email"></label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FillDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FillDate" class="form-control" />
-                <span asp-validation-for="FillDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="RefillDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="RefillDate" class="form-control" />
-                <span asp-validation-for="RefillDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="RxDose" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="RxDose" class="form-control" />
-                <span asp-validation-for="RxDose" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="RxName" class="col-md-2 control-label"></label>
+            <label asp-for="RxName" class="col-md-2 control-label">Medication</label>
             <div class="col-md-10">
                 <input asp-for="RxName" class="form-control" />
                 <span asp-validation-for="RxName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="RxDose" class="col-md-2 control-label">Dosage</label>
+            <div class="col-md-10">
+                <input asp-for="RxDose" class="form-control" />
+                <span asp-validation-for="RxDose" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FillDate" class="col-md-2 control-label">Date Filled</label>
+            <div class="col-md-10">
+                <input asp-for="FillDate" class="form-control" />
+                <span asp-validation-for="FillDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RefillDate" class="col-md-2 control-label">Refill Date</label>
+            <div class="col-md-10">
+                <input asp-for="RefillDate" class="form-control" />
+                <span asp-validation-for="RefillDate" class="text-danger"></span>
+            </div>
+        </div>        
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
                     <input asp-for="Text" />
-                    <label asp-for="Text"></label>
+                    <label asp-for="Text">Text Reminder</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Email" />
+                    <label asp-for="Email">Email Reminder</label>
                 </div>
             </div>
         </div>

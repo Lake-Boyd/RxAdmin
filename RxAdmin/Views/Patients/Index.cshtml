@@ -5,9 +5,6 @@
 
 <h2>Patient Information</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
 
 <form asp-action="Index" method="get">
@@ -32,7 +29,7 @@
             <th>City</th>
             <th>State</th>
             <th>Zip Code</th>
-            <th>Primary M.D.</th>
+            <th>Doctor ID</th>
             <th>Current Condition</th>
             <th></th>
         </tr>
@@ -79,3 +76,6 @@
 }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create">Add a New Patient</a>
+</p>

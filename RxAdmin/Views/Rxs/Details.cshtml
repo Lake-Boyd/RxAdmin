@@ -1,56 +1,56 @@
 @model RxAdmin.Models.Rx
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Prescription Details";
 }
 
-<h2>Details</h2>
+<h2>Prescription Details</h2>
 
 <div>
-    <h4>Rx</h4>
     <hr />
     <dl class="dl-horizontal">
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Patient ID
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.Patient.ID)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FillDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FillDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RefillDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RefillDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RxDose)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RxDose)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RxName)
+            Medication
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RxName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Text)
+            Dosage
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RxDose)
+        </dd>       
+        <dt>
+           Date Filled
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FillDate)
+        </dd>
+        <dt>
+            Refill Date
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RefillDate)
+        </dd> 
+        <dt>
+            Text Reminder
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Text)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Patient)
+            Email Reminder
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Patient.ID)
+            @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
 </div>

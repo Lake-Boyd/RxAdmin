@@ -4,85 +4,84 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Add New Patient</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Patient</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="DoctorID" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="DoctorID" class ="form-control" asp-items="ViewBag.DoctorID"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Condition" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Condition" class="form-control" />
-                <span asp-validation-for="Condition" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+            <label asp-for="FirstName" class="col-md-2 control-label">First Name</label>
             <div class="col-md-10">
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <label asp-for="LastName" class="col-md-2 control-label">Last Name</label>
             <div class="col-md-10">
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Age" class="col-md-2 control-label"></label>
+            <label asp-for="Age" class="col-md-2 control-label">Age</label>
             <div class="col-md-10">
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Gender" class="col-md-2 control-label"></label>
+            <label asp-for="Gender" class="col-md-2 control-label">Gender</label>
             <div class="col-md-10">
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Street" class="col-md-2 control-label"></label>
+            <label asp-for="Street" class="col-md-2 control-label">Address</label>
             <div class="col-md-10">
                 <input asp-for="Street" class="form-control" />
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="City" class="col-md-2 control-label"></label>
+            <label asp-for="City" class="col-md-2 control-label">City</label>
             <div class="col-md-10">
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="State" class="col-md-2 control-label"></label>
+            <label asp-for="State" class="col-md-2 control-label">State</label>
             <div class="col-md-10">
                 <input asp-for="State" class="form-control" />
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Zip" class="col-md-2 control-label"></label>
+            <label asp-for="Zip" class="col-md-2 control-label">Zip Code</label>
             <div class="col-md-10">
                 <input asp-for="Zip" class="form-control" />
                 <span asp-validation-for="Zip" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="DoctorID" class="col-md-2 control-label">Doctor ID</label>
+            <div class="col-md-10">
+                <select asp-for="DoctorID" class="form-control" asp-items="ViewBag.DoctorID"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Condition" class="col-md-2 control-label">Condition</label>
+            <div class="col-md-10">
+                <input asp-for="Condition" class="form-control" />
+                <span asp-validation-for="Condition" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add" class="btn btn-default" />
             </div>
         </div>
     </div>
