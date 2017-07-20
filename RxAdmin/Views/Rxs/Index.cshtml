@@ -23,27 +23,13 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FillDate)
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.RefillDate)</a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RxDose)
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.RxName)</a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Text)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient)
-            </th>
+            <th>Patient</th>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Date Filled</th>
+            <th>Refill Date</th>
+            <th>Text Reminder</th>
+            <th>Email Reminder</th>
             <th></th>
         </tr>
     </thead>
@@ -51,26 +37,26 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.PatientID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RxName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RxDose)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FillDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RefillDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RxDose)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RxName)
-            </td>
+            </td>                        
             <td>
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PatientID)
-            </td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
